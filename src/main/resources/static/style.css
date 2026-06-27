@@ -156,3 +156,15 @@ tr:nth-child(even) {
 tr:last-child {
 	border-bottom: 2px solid #2b6cb0;
 }
+
+/* ボタンスタイル（編集・削除・キャンセル） */
+.btn-edit, .btn-delete ,.btn-cancel{
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}

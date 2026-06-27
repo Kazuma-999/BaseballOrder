@@ -4,14 +4,34 @@
 
 <mapper namespace="com.example.baseball.repository.mybatis.PlayerMapper">
 
-    <select id="findAll" resultType="com.example.baseball.entity.Player">
-        SELECT id, name, uniform_number AS uniformNumber, main_position AS mainPosition 
-        FROM players
-    </select>
+	<select id="findAll" resultType="com.example.baseball.entity.Player">
+		SELECT id, name, uniform_number AS uniformNumber, main_position AS mainPosition
+		FROM players
+	</select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO players (name, uniform_number, main_position)
-        VALUES (#{name}, #{uniformNumber}, #{mainPosition})
-    </insert>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO players (name, uniform_number, main_position)
+		VALUES (#{name}, #{uniformNumber}, #{mainPosition})
+	</insert>
 
+	<select id="findById" parameterType="Long"
+		resultType="com.example.baseball.entity.Player">
+		SELECT id, name, uniform_Number AS uniformNumber,main_position AS main_Position
+		FROM players
+		WHERE id = #{id}
+	</select>
+
+	<update id="update" parameterType="com.example.baseball.entity.Player">
+		UPDATE players
+		SET
+			name = #{name},
+			uniform_number = #{uniformNumber},
+			main_position = #{mainPosition}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id = "deleteById" parameterType = "Long">
+		DELETE FROM players
+		WHERE id = #{id}
+	</delete>
 </mapper>

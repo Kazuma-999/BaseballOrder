@@ -8,22 +8,25 @@
 </head>
 
 <body>
-	<h1>草野球オーダー作成：選手一覧・登録</h1>
+	<h1>選手登録・一覧</h1>
 
 	<h2>選手登録</h2>
 	<form th:action="@{/players/register}" th:object="${playerForm}" method="post">
 		<div class="form-group">
-			<label>選手名: </label>
-			<input type="text" th:field="*{name}" required />
+			<label for="name">選手名</label>
+			<input type="text" th:field="*{name}" id="name" placeholder="例: 大谷 翔平" required>
 		</div>
+
 		<div class="form-group">
-			<label>背番号: </label>
-			<input type="number" th:field="*{uniformNumber}" />
+			<label for="uniformNumber">背番号</label>
+			<input type="number" th:field="*{uniformNumber}" id="uniformNumber" placeholder="例: 17" required>
 		</div>
+
 		<div class="form-group">
-			<label>守備位置: </label>
-			<input type="text" th:field="*{mainPosition}" required />
+			<label for="mainPosition">守備位置</label>
+			<input type="text" th:field="*{mainPosition}" id="mainPosition" placeholder="例: 投手 一塁手 中堅手" required>
 		</div>
+
 		<button type="submit">登録する</button>
 	</form>
 
@@ -38,6 +41,7 @@
 				<th>選手名</th>
 				<th>背番号</th>
 				<th>守備位置</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,12 +50,23 @@
 				<td th:text="${player.name}"></td>
 				<td th:text="${player.uniformNumber}"></td>
 				<td th:text="${player.mainPosition}"></td>
+				<td>
+					<div>
+						<form th:action="@{/players/edit/{id}(id=${player.id})}" method="get">
+							<button type="submit" class="btn-edit">編集</button>
+						</form>
+						
+						<form th:action="@{/players/delete/{id}(id=${player.id})}" method="post">
+							<button type="submit" class="btn-delete" onclick="return confirm('本当に削除しますか？');">削除</button>
+						</form>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	<br>
-	<a th:href="@{/}">🏠 トップメニューに戻る</a>
+	<a th:href="@{/}">メニューに戻る</a>
 </body>
 
 </html>
