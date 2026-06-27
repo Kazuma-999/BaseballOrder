@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>草野球オーダー作成システム</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<h1>⚾ 草野球オーダー作成システム</h1>
+	<p>メニューを選択してください。</p>
+
+	<div class="menu-container">
+		<div class="menu-card">
+			<h3>選手管理</h3>
+			<p>選手の登録や一覧を確認出来ます</p>
+			<a th:href="@{/players}">選手一覧表示</a>
+		</div>
+
+		<div class="menu-card">
+			<h3>オーダー作成</h3>
+			<p>本日のスターティングメンバーと打順を決めます</p>
+			<a th:href="@{/orders/make}">オーダー作成</a>
+		</div>
+
+		<div class="menu-card">
+			<h3>履歴</h3>
+			<p>過去に作成したオーダーの履歴を確認出来ます</p>
+			<a th:href="@{/orders/history}">履歴一覧</a>
+		</div>
+	</div>
+</body>
+
+</html>

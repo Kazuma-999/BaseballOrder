@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>選手一覧・登録</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<h1>草野球オーダー作成：選手一覧・登録</h1>
+
+	<h2>選手登録</h2>
+	<form th:action="@{/players/register}" th:object="${playerForm}" method="post">
+		<div class="form-group">
+			<label>選手名: </label>
+			<input type="text" th:field="*{name}" required />
+		</div>
+		<div class="form-group">
+			<label>背番号: </label>
+			<input type="number" th:field="*{uniformNumber}" />
+		</div>
+		<div class="form-group">
+			<label>守備位置: </label>
+			<input type="text" th:field="*{mainPosition}" required />
+		</div>
+		<button type="submit">登録する</button>
+	</form>
+
+	<br>
+	<hr>
+
+	<h2>選手一覧</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>選手名</th>
+				<th>背番号</th>
+				<th>守備位置</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="player : ${players}">
+				<td th:text="${player.id}"></td>
+				<td th:text="${player.name}"></td>
+				<td th:text="${player.uniformNumber}"></td>
+				<td th:text="${player.mainPosition}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+	<a th:href="@{/}">🏠 トップメニューに戻る</a>
+</body>
+
+</html>
